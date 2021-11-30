@@ -1,2 +1,2 @@
 # explore-buy
-Siny app for interactive exploration of buy-data
+Siny app for interactive exploration of the buy-dataset
