@@ -128,10 +128,11 @@ data_description <- paste(
 
 data_variables <- tribble(
   ~variable, ~description,
-  "period", "year/month (yyyymm)",
+  #"period", "year/month (yyyymm)",
   "age", "age of the customer",
+  "gender", "gender (male or female)",
   "city_ind", "located in city (0 = no, 1 = yes)",
-  "female_ind", "is female (0 = no, 1 = yes)",
+  #"female_ind", "is female (0 = no, 1 = yes)",
   "fixedvoice_ind", "has fixed voice (0 = no, 1 = yes)",
   "fixeddata_ind", "has fixed data (0 = no, 1 = yes)",
   "fixedtv_ind", "has fixed tv (0 = no, 1 = yes)",
