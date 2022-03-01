@@ -18,6 +18,7 @@ fakedata = function(obs = 1000,
                     factorise_target = FALSE,
                     target1_prob = 0.5, 
                     add_extreme = TRUE,
+                    flip_gender = FALSE,
                     seed = 123) {
   
   # set seed (randomization)
@@ -89,6 +90,11 @@ fakedata = function(obs = 1000,
     extreme$target_ind <- 0
     data[nrow(data), ] <- extreme[1, ]
   }
+
+  # flip gender?
+  if (flip_gender) {
+    data[["female_ind"]] <- ifelse(data[["female_ind"]] == 1, 0, 1)
+  }
   
   # rename target?
   if (target_name != "target_ind") {
@@ -104,8 +110,12 @@ fakedata = function(obs = 1000,
 } # fakedata
 
 
-data <- fakedata(obs = 1000, target_name = "buy", target1_prob = 1/6, seed = 123)
-data <- data %>% select(-id)
+data <- fakedata(obs = 1000, flip_gender = TRUE, target_name = "buy", target1_prob = 1/6, seed = 123)
+data <- data %>% select(-id, -period)
+data <- data %>% 
+  mutate(gender = ifelse(female_ind == 1, "female", "male")) %>% 
+  select(-female_ind) %>%
+  select(age, gender, everything())
 
 # add description for help-tab
 data_title <- "To who fits our new product 'Smart Vacuum Cleaner'?"
